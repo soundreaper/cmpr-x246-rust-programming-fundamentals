@@ -74,10 +74,13 @@ fn prompt_unit(prompt: &str, from_or_to: &str) -> String {
 fn convert_temperature(value: f64, from: &str, to: &str) -> Option<f64> {
     // we'll use a match function to figure out which conversion formula we need; since we check user input above, we should never run into the last case but it's there just in case
     match (from, to) {
+        ("C", "C") => Some(value),
         ("C", "F") => Some(value * 9.0 / 5.0 + 32.0),
         ("C", "K") => Some(value + 273.15),
+        ("F", "F") => Some(value),
         ("F", "C") => Some((value - 32.0) * 5.0 / 9.0),
         ("F", "K") => Some((value + 459.67) * 5.0 / 9.0),
+        ("K", "K") => Some(value),
         ("K", "F") => Some(value * 9.0 / 5.0 - 459.67),
         ("K", "C") => Some(value - 273.15),
         _ => None,
