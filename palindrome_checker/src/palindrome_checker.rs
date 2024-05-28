@@ -4,6 +4,7 @@ fn main() {
     //an array of functions
     let palindrome_checkers:[fn(s:&str)->bool; 2] = [is_pal_loop, is_pal_recursion];
 
+    // boilerplate at the top
     println!("This is a palindrome checker program.");
     println!("A palindrome is a word, phrase, or number that reads the same forward and backward.");
     println!("Strings \"Kayak\", \"race car\",\"161\" are all palindromes.");
@@ -70,12 +71,13 @@ fn main() {
                     }
                 }
             }
-
+            // if there are no words then the string is not a palindrome
             if palindrome_words.is_empty() {
                 println!("String \"{}\" is NOT a palindrome.", input);
                 println!("String \"{}\" is NOT a palindrome.", input);
                 println!("=====");
             } else {
+                // print the string and the palindromic words
                 println!("String \"{}\" is NOT a palindrome, but has the following palindrome item(s) in it:\n  {}.", input, palindrome_words);
                 println!("String \"{}\" is NOT a palindrome, but has the following palindrome item(s) in it:\n  {}.", input, palindrome_words);
                 println!("=====");
