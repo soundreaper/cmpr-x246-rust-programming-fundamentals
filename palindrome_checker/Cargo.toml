@@ -1,0 +1,10 @@
+[package]
+name = "palindrome_checker"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "palindrome_checker"
+path = "src/palindrome_checker.rs"
+
+[dependencies]
