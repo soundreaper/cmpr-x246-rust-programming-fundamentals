@@ -10,6 +10,7 @@ const APP_NAME: &str = "cwl";
 
 // Entry point of the program
 fn main() {
+    // Setting up the command-line argument parser
     let matches = Command::new(APP_NAME)
         .version(VERSION)
         .about("Count lines, words, and characters in files or directories")
@@ -33,17 +34,19 @@ fn main() {
             .help("Get the line count"))
         .get_matches();
 
+    // Retrieve the path argument and the flags for counting chars, words, and lines
     let path = matches.get_one::<String>("path").unwrap();
     let count_chars = *matches.get_one::<bool>("chars").unwrap_or(&false) || (!matches.contains_id("chars") && !matches.contains_id("words") && !matches.contains_id("lines"));
     let count_words = *matches.get_one::<bool>("words").unwrap_or(&false) || (!matches.contains_id("chars") && !matches.contains_id("words") && !matches.contains_id("lines"));
     let count_lines = *matches.get_one::<bool>("lines").unwrap_or(&false) || (!matches.contains_id("chars") && !matches.contains_id("words") && !matches.contains_id("lines"));
 
+    // Process the given path
     if let Err(e) = process_path(Path::new(path), count_chars, count_words, count_lines) {
         eprintln!("[ERROR] {}", e);
     }
 }
 
-// Function to process the given path
+// Function to process the given path (file or directory)
 fn process_path(path: &Path, count_chars: bool, count_words: bool, count_lines: bool) -> io::Result<()> {
     if path.is_file() {
         process_file(path, count_chars, count_words, count_lines)?;

@@ -3,6 +3,10 @@ name = "count_lines_words_chars"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "count_lwc"
+path = "src/count_lwc.rs"
+
 [dependencies]
 clap = { version = "4.5.7", features = ["cargo", "derive"] }
 walkdir = "2.5.0"
